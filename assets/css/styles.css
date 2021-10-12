@@ -13,25 +13,29 @@ header ul {
     font-size: 150%;
 }
 
-#welcome-page {
+header ul li a {
+    text-decoration: none;
+}
+
+#stage {
     width: 50%;
     margin: 10% auto;
     text-align: center;
 }
 
-#welcome-page h1, p {
+#stage h1, p {
     margin-bottom: 5%;
 }
 
-#welcome-page p {
+#stage p {
     font-weight: 900;
 }
 
-#welcome-page button {
+#stage button {
     margin-top: 10px;
 }
 
-#start-button {
+#start-button, #next-button {
     background-color: rgb(60, 9, 107);
     color: rgb(228, 231, 198);
     padding: 1%;
@@ -39,3 +43,4 @@ header ul {
     font-size: 100%;
     font-weight: 900;
 }
+
