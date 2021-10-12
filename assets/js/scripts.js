@@ -38,6 +38,7 @@ startButton.addEventListener("click", function(){
     timerStart();
     currentQuestion++;
     // turn start button to next button if we are on either questions 1 to 5
+    
     if (currentQuestion !== 0) {
         console.log(currentQuestion);
         document.querySelector("#stage").innerHTML = questions[currentQuestion];
