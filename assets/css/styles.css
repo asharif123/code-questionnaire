@@ -55,6 +55,11 @@ header ul li a {
     margin: 2% auto;
 }
 
+/* shows which choice the user has selected */
+.choiceBtn:focus {
+    background-color: rgb(37, 104, 37);
+}
+
 form {
     padding: 4%;
 }

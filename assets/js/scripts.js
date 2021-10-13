@@ -35,8 +35,7 @@ initialsBox.setAttribute("id", "initials");
 var currentQuestion = 0;
 
 // record the score user gets
-var score = 120;
-var scoreTotal = document.createElement("span");
+var score = 0;
 
 // Questions and answers
 var questions = [
@@ -49,10 +48,10 @@ var questions = [
 ];
 
 
-
-
 // timer function for 30 second time limit
 // stop the timer if user either answers all 5 questions or fails to answer before time limit
+
+
 function timerStart() {
     var timerInterval = setInterval(function() {
         timerCount.textContent = timeLeft;
