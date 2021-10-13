@@ -31,7 +31,6 @@ initialsBox.setAttribute("name", "initials");
 initialsBox.setAttribute("id", "initials");
 initialsBox.setAttribute("placeholder", "AAA");
 
-
 // record which question the user is currently at
 var currentQuestion = 0;
 
@@ -65,15 +64,32 @@ function timerStart() {
     }, 1000)
 }
 
-// function to store player's score and initials
-// when user enters initials and hits submit, store player's score and initials
+// function to store player's score and initials at the end of the game
 function storePlayerInfo() {
     document.querySelector("#stage").innerHTML = "<h3>Your total score is: </h3>" + score;
     formSubmit.appendChild(initialsBox);
     formSubmit.appendChild(initialsButton);
     document.querySelector("#stage").appendChild(formSubmit);
-    
+
+    // when user enters initials and hits submit, store player's score and initials
+    initialsButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        var playerInitials = document.querySelector("#initials");
+        var playerInfo = {
+
+            // .trim() removes spaces in between
+            // only show the first 3 letters
+            playerInitials: playerInitials.value.trim().slice(0,3),
+            playerScore: score
+          };
+        
+          localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
+          var lastPlayerInfo = JSON.parse(localStorage.getItem("playerInfo"))
+          console.log(lastPlayerInfo); 
+
+    })
 }
+
 
 // function to record if user answered question correctly or not
 // if correct, increase score by 10 points else if incorrect, decrease timer by 10 seconds
