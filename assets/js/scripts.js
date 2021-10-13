@@ -21,16 +21,15 @@ var currentQuestion = 0;
 // Questions and answers
 var questions = [
     "",
-    `<p>What is Javascript?</p>`,
-    `<p>This is Question 2!</p>`,
+    `<p>What is Javascript?</p> <div class="radio-choices"><button class="choiceBtn">GOD</button><button class="choiceBtn">I don't know</button><button class="choiceBtn">The knockoff Java</button><button class="choiceBtn">A programming language</button></div> `,
+    `<p>What is Javascript?</p> <div class="radio-choices"><input type="radio" name="choice" id="correct-answer"><label for="rad1">A programming language</label> <input type="radio" name="choice" id="wrong-answer"><label for="rad1">A movie script</label>, <input type="radio" name="choice" id="wrong-answer"><label for="rad1">A coffee drink</label> <input type="radio" name="choice"><label for="rad1" id="wrong-answer">An Island</label></div> `,
     `<p>This is Question 3!</p>`,
     `<p>This is Question 4!</p>`,
     `<p>This is Question 5!</p>`
 ];
 
-var answers = { 1:["A Programming language</input>", "<p>A coffee drink</p>", "<p>Name of a movie script</p>", "<p>A character in Star Wars</p>"]
 
-}
+
 
 // timer function for 30 second time limit
 // stop the timer if user either answers all 5 questions or fails to anser before time limit
@@ -47,16 +46,13 @@ function timerStart() {
 }
 
 startButton.addEventListener("click", function(){
-    timerStart();
+    // timerStart();
     currentQuestion++;
     // turn start button to next button if we are on either questions 1 to 5
 
     if (currentQuestion !== 0) {
         console.log(currentQuestion);
         document.querySelector("#stage").innerHTML = questions[currentQuestion];
-        for (var i = 0; i < answers[currentQuestion].length; i++) {
-            document.querySelector("#stage").textContent = (answers[currentQuestion][i]);
-        }
         // add the next button
         document.querySelector("#stage").appendChild(nextButton);
 
@@ -71,4 +67,6 @@ nextButton.addEventListener("click", function() {
         document.querySelector("#stage").appendChild(nextButton);
     }
 })
+
+
 

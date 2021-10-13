@@ -44,6 +44,15 @@ header ul li a {
     font-weight: 900;
 }
 
+/* styling the multiple choices */
+.radio-choices {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+input[type="radio"]:checked+label{ color: red; } 
+
 #high-scores {
     margin: 100px auto;
 }
