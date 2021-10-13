@@ -44,6 +44,17 @@ header ul li a {
     font-weight: 900;
 }
 
+.choiceBtn {
+    background-color: rgb(107, 9, 9);
+    color: rgb(228, 231, 198);
+    padding: 2%;
+    border-radius: 10px;
+    font-size: 90%;
+    font-weight: 900;
+    width: 50%;
+    margin: 2% auto;
+}
+
 form {
     padding: 4%;
 }
@@ -57,14 +68,18 @@ form {
 
 /* styling add initials input box */
 #initials {
-    width: 50%;
-    padding: 10px;
+    width: 30%;
+    padding: 1px;
+    text-align: center;
+    font-size: 100%;
+    font-weight: 900;
 }
 
 /* styling the multiple choices */
-.radio-choices {
+.multiple-choices {
     display: flex;
     flex-direction: column;
+    margin-top: 5%;
 }
 
 #high-scores {
