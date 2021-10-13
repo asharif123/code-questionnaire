@@ -10,10 +10,26 @@ var startButton = document.querySelector("#start-button");
 var timerCount = document.querySelector(".timer");
 var timeLeft = 30;
 var timer;
+
 // logic for next button
 var nextButton = document.createElement("button");
 nextButton.setAttribute("id", "next-button");
 nextButton.innerHTML = "Next"; 
+
+// form element to hold input box and form submit
+var formSubmit = document.createElement("form");
+
+// button allows player to store score and initials at end of the game with score
+var initialsButton = document.createElement("button");
+initialsButton.setAttribute("id", "add-initials");
+initialsButton.innerHTML = "Add Initials"; 
+
+// input box where player can add their initials at the end of the game
+var initialsBox = document.createElement("INPUT");
+initialsBox.setAttribute("type", "text");
+initialsBox.setAttribute("name", "initials");
+initialsBox.setAttribute("id", "initials");
+
 
 // record which question the user is currently at
 var currentQuestion = 0;
@@ -22,7 +38,7 @@ var currentQuestion = 0;
 var questions = [
     "",
     `<p>What is Javascript?</p> <div class="radio-choices"><button class="choiceBtn">GOD</button><button class="choiceBtn">I don't know</button><button class="choiceBtn">The knockoff Java</button><button class="choiceBtn">A programming language</button></div> `,
-    `<p>What is Javascript?</p> <div class="radio-choices"><input type="radio" name="choice" id="correct-answer"><label for="rad1">A programming language</label> <input type="radio" name="choice" id="wrong-answer"><label for="rad1">A movie script</label>, <input type="radio" name="choice" id="wrong-answer"><label for="rad1">A coffee drink</label> <input type="radio" name="choice"><label for="rad1" id="wrong-answer">An Island</label></div> `,
+    `<p>Inside which HTML element do we put the JavaScript?</p> <div class="radio-choices"><input type="radio" name="choice" id="correct-answer"><label for="rad1">javascript</label> <input type="radio" name="choice" id="wrong-answer"><label for="rad1">html</label>, <input type="radio" name="choice" id="wrong-answer"><label for="rad1">js</label> <input type="radio" name="choice"><label for="rad1" id="wrong-answer">script</label></div> `,
     `<p>This is Question 3!</p>`,
     `<p>This is Question 4!</p>`,
     `<p>This is Question 5!</p>`
@@ -32,12 +48,15 @@ var questions = [
 
 
 // timer function for 30 second time limit
-// stop the timer if user either answers all 5 questions or fails to anser before time limit
+// stop the timer if user either answers all 5 questions or fails to answer before time limit
 function timerStart() {
     var timerInterval = setInterval(function() {
         timerCount.textContent = timeLeft;
         if (timeLeft === 0 || currentQuestion > 5) {
             document.querySelector("#stage").innerHTML = "<h1>GAME OVER!</h1>";
+            formSubmit.appendChild(initialsBox);
+            formSubmit.appendChild(initialsButton);
+            document.querySelector("#stage").appendChild(formSubmit);
             clearInterval(timerInterval);
         }
         timeLeft--;
@@ -46,7 +65,7 @@ function timerStart() {
 }
 
 startButton.addEventListener("click", function(){
-    // timerStart();
+    timerStart();
     currentQuestion++;
     // turn start button to next button if we are on either questions 1 to 5
 
@@ -61,7 +80,7 @@ startButton.addEventListener("click", function(){
 
 nextButton.addEventListener("click", function() {
     currentQuestion++;
-    console.log(currentQuestion);
+    // logic for if we are on 2nd to 5th question
     if (currentQuestion > 1 && currentQuestion < 6) {
         document.querySelector("#stage").innerHTML = questions[currentQuestion];
         document.querySelector("#stage").appendChild(nextButton);

@@ -35,7 +35,7 @@ header ul li a {
     margin-top: 10px;
 }
 
-#start-button, #next-button, #clear-button {
+#start-button, #next-button, #clear-button, #add-initials {
     background-color: rgb(60, 9, 107);
     color: rgb(228, 231, 198);
     padding: 1% 5%;
@@ -44,14 +44,28 @@ header ul li a {
     font-weight: 900;
 }
 
+form {
+    padding: 4%;
+}
+
+/* styling the add initials button */
+
+#add-initials {
+    margin-left: 5%;
+    font-weight: 900;
+}
+
+/* styling add initials input box */
+#initials {
+    width: 50%;
+    padding: 10px;
+}
+
 /* styling the multiple choices */
 .radio-choices {
     display: flex;
     flex-direction: column;
-    list-style-type: none;
 }
-
-input[type="radio"]:checked+label{ color: red; } 
 
 #high-scores {
     margin: 100px auto;
