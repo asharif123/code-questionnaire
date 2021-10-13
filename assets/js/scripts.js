@@ -29,6 +29,7 @@ var initialsBox = document.createElement("INPUT");
 initialsBox.setAttribute("type", "text");
 initialsBox.setAttribute("name", "initials");
 initialsBox.setAttribute("id", "initials");
+initialsBox.setAttribute("placeholder", "AAA");
 
 
 // record which question the user is currently at
@@ -56,16 +57,26 @@ function timerStart() {
     var timerInterval = setInterval(function() {
         timerCount.textContent = timeLeft;
         if (timeLeft === 0 || currentQuestion > 5) {
-            document.querySelector("#stage").innerHTML = "<h3>Your total score is: </h3>" + score;
-            formSubmit.appendChild(initialsBox);
-            formSubmit.appendChild(initialsButton);
-            document.querySelector("#stage").appendChild(formSubmit);
+            storePlayerInfo();
             clearInterval(timerInterval);
         }
         timeLeft--;
 
     }, 1000)
 }
+
+// function to store player's score and initials
+// when user enters initials and hits submit, store player's score and initials
+function storePlayerInfo() {
+    document.querySelector("#stage").innerHTML = "<h3>Your total score is: </h3>" + score;
+    formSubmit.appendChild(initialsBox);
+    formSubmit.appendChild(initialsButton);
+    document.querySelector("#stage").appendChild(formSubmit);
+    
+}
+
+// function to record if user answered question correctly or not
+// if correct, increase score by 10 points else if incorrect, decrease timer by 10 seconds
 
 startButton.addEventListener("click", function(){
     timerStart();
