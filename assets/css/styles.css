@@ -10,11 +10,10 @@ header ul {
     list-style-type: none;
     padding: 2%;
     font-size: 150%;
+    display: flex;
+    justify-content: space-around;
 }
 
-header ul li a {
-    text-decoration: none;
-}
 
 #stage {
     width: 50%;
@@ -34,7 +33,14 @@ header ul li a {
     margin-top: 10px;
 }
 
-#start-button, #add-initials {
+.buttons {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 20px auto;
+}
+
+#start-button, #add-initials, #high-score, #go-back-button, #clear-button {
     background-color: rgb(60, 9, 107);
     color: rgb(228, 231, 198);
     padding: 1% 5%;
@@ -88,5 +94,13 @@ form {
 
 #high-scores {
     margin: 100px auto;
+}
+
+.high-score-results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10% auto;
 }
 

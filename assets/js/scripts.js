@@ -1,12 +1,4 @@
-// PSEUDOCODE:
-// When user hits "Start Quiz", redirect to question-one webpage and start the 30 second timer
-// When user is on question 1, user has 4 choices to choose from
-// if user hits next and chooses wrong answer, should briefly show "Wrong!" message and subtract 5 seconds from timer
-// if user chooses correct answer, should briefly show "Correct!" message and increment users score by 5 points
-// if user answers all questions before timer or time expires, should see "Game Over!" and user's score
-// at the end of the game, user should enter initials and save statistics.
-// in Highscore webpage, user should see the user with highest score and be given option to clear
-var startButton = document.querySelector("#start-button");
+
 var timerCount = document.querySelector(".timer");
 var timeLeft = 30;
 var timer;
@@ -26,6 +18,13 @@ initialsBox.setAttribute("name", "initials");
 initialsBox.setAttribute("id", "initials");
 initialsBox.setAttribute("placeholder", "AAA");
 
+
+// button for main home page
+var homeButton = document.querySelector("#go-back-button")
+console.log(homeButton)
+// button to clear statistics
+var clearButton = document.querySelector("#clear-button")
+
 // record which question the user is currently at
 var currentQuestion = 0;
 
@@ -43,7 +42,43 @@ var questions = [
     `<h2>What keyword is used to skip loop iteration?</h2> <div class="multiple-choices"><button class="choiceBtn correct-answer" onclick="checkAnswer()">continue</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">break</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">next</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">skip</button></div> `
 ];
 
+// high score button
+var highScoreButton = document.querySelector("#high-score");
 
+highScoreButton.addEventListener("click", function(){
+    location.href = 'high-score.html';
+})
+// function to store player's score and initials at the end of the game
+function storePlayerInfo() {
+    document.querySelector("#stage").innerHTML = "<h3>Your total score is: </h3>" + score;
+    formSubmit.appendChild(initialsBox);
+    formSubmit.appendChild(initialsButton);
+    document.querySelector("#stage").appendChild(formSubmit);
+
+    // when user enters initials and hits submit, store player's score and initials
+    initialsButton.addEventListener("click", function() {
+        // event.preventDefault();
+        var playerInitials = document.querySelector("#initials");
+        var playerInfo = {
+
+            // .trim() removes spaces in between
+            // only show the first 3 letters
+            playerInitials: playerInitials.value.trim().slice(0,3),
+            playerScore: score
+          };
+        
+          localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
+
+        //   redirect to main page after player enters initials
+          location.href = 'high-score.html';
+          var lastPlayerInfo = JSON.parse(localStorage.getItem("playerInfo"))
+          if (lastPlayerInfo !== null) {
+              document.querySelector(".user-score").innerHTML = lastPlayerInfo.playerScore;
+              document.querySelector(".user-score").innerHTML = lastPlayerInfo.playerInitials;
+          }
+
+    })
+}
 // timer function for 30 second time limit
 // stop the timer if user either answers all 5 questions or fails to answer before time limit
 
@@ -65,36 +100,9 @@ function timerStart() {
     }, 1000)
 }
 
-// function to store player's score and initials at the end of the game
-function storePlayerInfo() {
-    document.querySelector("#stage").innerHTML = "<h3>Your total score is: </h3>" + score;
-    formSubmit.appendChild(initialsBox);
-    formSubmit.appendChild(initialsButton);
-    document.querySelector("#stage").appendChild(formSubmit);
-
-    // when user enters initials and hits submit, store player's score and initials
-    initialsButton.addEventListener("click", function(event) {
-        event.preventDefault();
-        var playerInitials = document.querySelector("#initials");
-        var playerInfo = {
-
-            // .trim() removes spaces in between
-            // only show the first 3 letters
-            playerInitials: playerInitials.value.trim().slice(0,3),
-            playerScore: score
-          };
-        
-          localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
-          var lastPlayerInfo = JSON.parse(localStorage.getItem("playerInfo"))
-        //   redirect to main page after player enters initials
-          location.href = 'index.html';
-
-    })
-}
-
 
 // start the quiz and record whether user made correct or incorrect choice
-
+var startButton = document.querySelector("#start-button");
 startButton.addEventListener("click", function(){
     currentQuestion++;
     timerStart();
