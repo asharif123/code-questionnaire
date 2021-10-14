@@ -6,8 +6,7 @@
 }
 
 header ul {
-    display: flex;
-    justify-content: space-between;
+    text-align: center;
     list-style-type: none;
     padding: 2%;
     font-size: 150%;
@@ -35,7 +34,7 @@ header ul li a {
     margin-top: 10px;
 }
 
-#start-button, #next-button, #clear-button, #add-initials {
+#start-button, #add-initials {
     background-color: rgb(60, 9, 107);
     color: rgb(228, 231, 198);
     padding: 1% 5%;
