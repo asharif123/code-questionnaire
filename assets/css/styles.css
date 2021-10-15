@@ -113,7 +113,7 @@ form {
 
 .high-score-results-info {
     padding: 5%;
-    margin: 0% 15%;
+    text-align: center;
 }
 
 #user-initials, #user-score {
