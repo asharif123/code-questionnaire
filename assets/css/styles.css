@@ -49,6 +49,12 @@ header ul {
     font-weight: 900;
 }
 
+#go-back-button a {
+    color: rgb(228, 231, 198);
+    text-decoration: none;
+    font-size: 90%;
+}
+
 .choiceBtn {
     background-color: rgb(107, 9, 9);
     color: rgb(228, 231, 198);
@@ -102,5 +108,18 @@ form {
     justify-content: center;
     align-items: center;
     margin: 10% auto;
+}
+
+.high-score-results-info {
+    padding: 5%;
+    margin: 0% 15%;
+}
+
+#user-initials, #user-score {
+    margin-left: 5%;
+}
+
+#clear-button {
+    margin-top: 2%;
 }
 

@@ -67,12 +67,8 @@ function storePlayerInfo() {
         
           localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
         //   redirect to high score page and show player's initials/high score
+        // since redirecting to another page, does not consider code after line 71
         location.href = 'high-score.html';
-        var lastPlayerInfo = JSON.parse(localStorage.getItem("playerInfo"))
-        if (lastPlayerInfo !== null) {
-            document.querySelector(".user-score").innerHTML = lastPlayerInfo.playerScore;
-            document.querySelector(".user-initials").innerHTML = lastPlayerInfo.playerInitials;
-        }
 
     })
 }
@@ -126,7 +122,7 @@ function checkAnswer(event) {
         score += 10;
         scoreTotal.textContent = score;
         currentQuestion++;
-        document.querySelector("#stage").innerHTML = questions[currentQuestion];
+        document.querySelector("#stage").innerHTML = questions[currentQuestion] || "";
         }
     else {
         console.log("WRONG!")
@@ -134,12 +130,28 @@ function checkAnswer(event) {
         scoreTotal.textContent = score;
         timeLeft -= 5;
         currentQuestion++;
-        document.querySelector("#stage").innerHTML = questions[currentQuestion];
-
-        
+        document.querySelector("#stage").innerHTML = questions[currentQuestion] || "";
         }
     //What if there are no more questions?
 }
+
+// run if only on high score page
+function displayScore() {
+    // grab information from local storage containing score and initials
+    var lastPlayerInfo = JSON.parse(localStorage.getItem("playerInfo"))
+    // add latest score to high scores page if it exists
+    if (lastPlayerInfo !== null) {
+        document.querySelector(".user-score").innerHTML = lastPlayerInfo.playerScore;
+        document.querySelector(".user-initials").innerHTML = lastPlayerInfo.playerInitials;
+    }
+}
+
+// add the last score and initial ONLY on the high score.html webpage
+if (location.href.includes("high-score.html")) {
+    displayScore();
+}
+
+console.log(location.href);
 
 
 

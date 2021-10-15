@@ -1,0 +1,1 @@
+![alt text](./assets/images/main-page.JPG "main page")
