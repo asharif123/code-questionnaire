@@ -42,12 +42,6 @@ var questions = [
     `<h2>What keyword is used to skip loop iteration?</h2> <div class="multiple-choices"><button class="choiceBtn correct-answer" onclick="checkAnswer()">continue</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">break</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">next</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">skip</button></div> `
 ];
 
-// high score button
-var highScoreButton = document.querySelector("#high-score");
-
-highScoreButton.addEventListener("click", function(){
-    location.href = 'high-score.html';
-})
 // function to store player's score and initials at the end of the game
 function storePlayerInfo() {
     document.querySelector("#stage").innerHTML = "<h3>Your total score is: </h3>" + score;
@@ -69,12 +63,12 @@ function storePlayerInfo() {
         
           localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
 
-        //   redirect to main page after player enters initials
-          location.href = 'high-score.html';
+        //   redirect to high score page and show player's initials/high score
+          location.href = '/high-score.html';
           var lastPlayerInfo = JSON.parse(localStorage.getItem("playerInfo"))
           if (lastPlayerInfo !== null) {
               document.querySelector(".user-score").innerHTML = lastPlayerInfo.playerScore;
-              document.querySelector(".user-score").innerHTML = lastPlayerInfo.playerInitials;
+              document.querySelector(".user-initials").innerHTML = lastPlayerInfo.playerInitials;
           }
 
     })
@@ -99,6 +93,13 @@ function timerStart() {
 
     }, 1000)
 }
+
+// high score button
+var highScoreButton = document.querySelector("#high-score");
+
+highScoreButton.addEventListener("click", function () {
+    location.href = '/high-score.html';
+})
 
 
 // start the quiz and record whether user made correct or incorrect choice
