@@ -122,7 +122,7 @@ function checkAnswer(event) {
         score += 10;
         scoreTotal.textContent = score;
         currentQuestion++;
-        document.querySelector("#stage").innerHTML = questions[currentQuestion] || "";
+        document.querySelector("#stage").innerHTML = questions[currentQuestion] || `<h1>GAME OVER!</h1>`;
         }
     else {
         console.log("WRONG!")
@@ -130,7 +130,7 @@ function checkAnswer(event) {
         scoreTotal.textContent = score;
         timeLeft -= 5;
         currentQuestion++;
-        document.querySelector("#stage").innerHTML = questions[currentQuestion] || "";
+        document.querySelector("#stage").innerHTML = questions[currentQuestion] || `<h1>GAME OVER!</h1>`;
         }
     //What if there are no more questions?
 }
