@@ -43,6 +43,28 @@ var questions = [
     `<h2>What keyword is used to skip loop iteration?</h2> <div class="multiple-choices"><button class="choiceBtn correct-answer" onclick="checkAnswer(event)">continue</button><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">break</button><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">next</button><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">skip</button></div> `
 ];
 
+// clear the player's initials and scores
+if (clearButton) {
+    clearButton.addEventListener("click", function() {
+        var playerInfo = {
+
+            // .trim() removes spaces in between
+            // only show the first 3 letters
+            playerInitials: '',
+            playerScore: ''
+          };
+        
+        localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
+
+        var lastPlayerInfo = JSON.parse(localStorage.getItem("playerInfo"))
+
+
+        document.querySelector(".user-score").innerHTML = lastPlayerInfo.playerScore;
+        document.querySelector(".user-initials").innerHTML = lastPlayerInfo.playerInitials;
+
+    });    
+}
+
 // function to store player's score and initials at the end of the game
 function storePlayerInfo() {
     document.querySelector("#stage").innerHTML = "<h3>Your total score is: </h3>" + score;
@@ -118,14 +140,12 @@ if (startButton !== null) {
 function checkAnswer(event) {
     var element = event.target;
     if (element.matches(".correct-answer")) {
-        console.log("CORRECT!")
         score += 10;
         scoreTotal.textContent = score;
         currentQuestion++;
         document.querySelector("#stage").innerHTML = questions[currentQuestion] || `<h1>GAME OVER!</h1>`;
         }
     else {
-        console.log("WRONG!")
         score -= 10;
         scoreTotal.textContent = score;
         timeLeft -= 5;
@@ -151,7 +171,7 @@ if (location.href.includes("high-score.html")) {
     displayScore();
 }
 
-console.log(location.href);
+
 
 
 

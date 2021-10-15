@@ -47,6 +47,7 @@ header ul {
     border-radius: 10px;
     font-size: 90%;
     font-weight: 900;
+    cursor: pointer;
 }
 
 #go-back-button a {
