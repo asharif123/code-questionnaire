@@ -7,6 +7,7 @@ var timer;
 var formSubmit = document.createElement("form");
 
 // button allows player to store score and initials at end of the game with score
+// any button inside of a form element is treated like a submit button
 var initialsButton = document.createElement("button");
 initialsButton.setAttribute("id", "add-initials");
 initialsButton.innerHTML = "Add Initials"; 
@@ -35,11 +36,11 @@ var scoreTotal = document.querySelector(".score");
 // assign wrong answers "wrong-answer" and right answers "right-answer"
 var questions = [
     "",
-    `<h2>What is Javascript?</h2> <div class="multiple-choices"><button class="choiceBtn wrong-answer" onclick="checkAnswer()">GOD</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">I don't know</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">The knockoff Java</button><button class="choiceBtn correct-answer" onclick="checkAnswer()">A programming language</button></div> `,
-    `<h2>Which of the following is not a Javascript method?</h2> <div class="multiple-choices"><button class="choiceBtn wrong-answer" onclick="checkAnswer()">.split()</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">.join()</button><button class="choiceBtn correct-answer" onclick="checkAnswer()">.print()</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">.includes()</button></div> `,
-    `<h2>How to declare a while loop to count from 0 to 10?</h2> <div class="multiple-choices"><button class="choiceBtn wrong-answer">while i=1 to 10</button><button class="choiceBtn correct-answer" onclick="checkAnswer()">while (i <= 10)</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">while (i <= 10; i++)</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">while i > 0 && i < 11</button></div> `,
-    `<h2>Which index is the starting value in a list?</h2> <div class="multiple-choices"><button class="choiceBtn wrong-answer" onclick="checkAnswer()">-1</button><button class="choiceBtn correct-answer" onclick="checkAnswer()">0</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">1</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">2</button></div> `,
-    `<h2>What keyword is used to skip loop iteration?</h2> <div class="multiple-choices"><button class="choiceBtn correct-answer" onclick="checkAnswer()">continue</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">break</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">next</button><button class="choiceBtn wrong-answer" onclick="checkAnswer()">skip</button></div> `
+    `<h2>What is Javascript?</h2> <div class="multiple-choices"><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">GOD</button><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">I don't know</button><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">The knockoff Java</button><button class="choiceBtn correct-answer" onclick="checkAnswer(event)">A programming language</button></div> `,
+    `<h2>Which of the following is not a Javascript method?</h2> <div class="multiple-choices"><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">.split()</button><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">.join()</button><button class="choiceBtn correct-answer" onclick="checkAnswer(event)">.print()</button><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">.includes()</button></div> `,
+    `<h2>How to declare a while loop to count from 0 to 10?</h2> <div class="multiple-choices"><button class="choiceBtn wrong-answer">while i=1 to 10</button><button class="choiceBtn correct-answer" onclick="checkAnswer(event)">while (i <= 10)</button><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">while (i <= 10; i++)</button><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">while i > 0 && i < 11</button></div> `,
+    `<h2>Which index is the starting value in a list?</h2> <div class="multiple-choices"><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">-1</button><button class="choiceBtn correct-answer" onclick="checkAnswer(event)">0</button><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">1</button><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">2</button></div> `,
+    `<h2>What keyword is used to skip loop iteration?</h2> <div class="multiple-choices"><button class="choiceBtn correct-answer" onclick="checkAnswer(event)">continue</button><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">break</button><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">next</button><button class="choiceBtn wrong-answer" onclick="checkAnswer(event)">skip</button></div> `
 ];
 
 // function to store player's score and initials at the end of the game
@@ -49,9 +50,12 @@ function storePlayerInfo() {
     formSubmit.appendChild(initialsButton);
     document.querySelector("#stage").appendChild(formSubmit);
 
+
     // when user enters initials and hits submit, store player's score and initials
-    initialsButton.addEventListener("click", function() {
-        // event.preventDefault();
+    initialsButton.addEventListener("click", function(event) {
+        // Submitting a form by default resets the page.
+        // Prevent the default behavior.
+        event.preventDefault();
         var playerInitials = document.querySelector("#initials");
         var playerInfo = {
 
@@ -62,14 +66,13 @@ function storePlayerInfo() {
           };
         
           localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
-
         //   redirect to high score page and show player's initials/high score
-          location.href = '/high-score.html';
-          var lastPlayerInfo = JSON.parse(localStorage.getItem("playerInfo"))
-          if (lastPlayerInfo !== null) {
-              document.querySelector(".user-score").innerHTML = lastPlayerInfo.playerScore;
-              document.querySelector(".user-initials").innerHTML = lastPlayerInfo.playerInitials;
-          }
+        location.href = 'high-score.html';
+        var lastPlayerInfo = JSON.parse(localStorage.getItem("playerInfo"))
+        if (lastPlayerInfo !== null) {
+            document.querySelector(".user-score").innerHTML = lastPlayerInfo.playerScore;
+            document.querySelector(".user-initials").innerHTML = lastPlayerInfo.playerInitials;
+        }
 
     })
 }
@@ -94,46 +97,48 @@ function timerStart() {
     }, 1000)
 }
 
-// high score button
+//high score button
 var highScoreButton = document.querySelector("#high-score");
 
-highScoreButton.addEventListener("click", function () {
-    location.href = '/high-score.html';
-})
+if (highScoreButton) {
+    highScoreButton.addEventListener("click", function () {
+        location.href = '/high-score.html';
+    })
+}
 
 
 // start the quiz and record whether user made correct or incorrect choice
 var startButton = document.querySelector("#start-button");
-startButton.addEventListener("click", function(){
-    currentQuestion++;
-    timerStart();
-    document.querySelector("#stage").innerHTML = questions[currentQuestion];
-    
-})
+if (startButton !== null) {
+    startButton.addEventListener("click", function(){
+        currentQuestion++;
+        timerStart();
+        document.querySelector("#stage").innerHTML = questions[currentQuestion];
+        
+    })
+}
 
 // verify if player clicked on correct or incorrect answer
-function checkAnswer() {
-    var multipleChoices = document.querySelector(".multiple-choices");   
-    multipleChoices.addEventListener("click", function(event){
-        var element = event.target;
-        if (element.matches(".correct-answer")) {
-            console.log("CORRECT!")
-            score += 10;
-            scoreTotal.textContent = score;
-            currentQuestion++;
-            document.querySelector("#stage").innerHTML = questions[currentQuestion];
-            }
-        else {
-            console.log("WRONG!")
-            score -= 10;
-            scoreTotal.textContent = score;
-            timeLeft -= 5;
-            currentQuestion++;
-            document.querySelector("#stage").innerHTML = questions[currentQuestion];
+function checkAnswer(event) {
+    var element = event.target;
+    if (element.matches(".correct-answer")) {
+        console.log("CORRECT!")
+        score += 10;
+        scoreTotal.textContent = score;
+        currentQuestion++;
+        document.querySelector("#stage").innerHTML = questions[currentQuestion];
+        }
+    else {
+        console.log("WRONG!")
+        score -= 10;
+        scoreTotal.textContent = score;
+        timeLeft -= 5;
+        currentQuestion++;
+        document.querySelector("#stage").innerHTML = questions[currentQuestion];
 
-            
-            }
-        }) 
+        
+        }
+    //What if there are no more questions?
 }
 
 
