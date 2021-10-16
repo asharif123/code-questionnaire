@@ -20,5 +20,9 @@ Once "Start Quiz" button is clicked, the player will be redirected to the first 
 
 Correct Answers will result in score increasing by 10 points and incorrect will decrease by 10 and timer will decrease by 5 seconds.
 
+As soon as player clicks on a button, player will automatically be redirected to the next question. There are 5 questions in total.
+
 ![alt-text](./assets/images/questions.JPG "questions")
 questions.JPG
+
+
