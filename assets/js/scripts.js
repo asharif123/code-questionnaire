@@ -89,7 +89,7 @@ function storePlayerInfo() {
         
           localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
         //   redirect to high score page and show player's initials/high score
-        // since redirecting to another page, does not consider code after line 71
+        // since redirecting to another page, does not consider code after this line
         location.href = 'high-score.html';
 
     })
@@ -115,7 +115,7 @@ function timerStart() {
     }, 1000)
 }
 
-//high score button
+//high score button that redirects to high score page when clicked
 var highScoreButton = document.querySelector("#high-score");
 
 if (highScoreButton) {
@@ -125,7 +125,7 @@ if (highScoreButton) {
 }
 
 
-// start the quiz and record whether user made correct or incorrect choice
+// start the quiz and timer starts as soon as user hits start button
 var startButton = document.querySelector("#start-button");
 if (startButton !== null) {
     startButton.addEventListener("click", function(){
@@ -152,7 +152,6 @@ function checkAnswer(event) {
         currentQuestion++;
         document.querySelector("#stage").innerHTML = questions[currentQuestion] || `<h1>GAME OVER!</h1>`;
         }
-    //What if there are no more questions?
 }
 
 // run if only on high score page
