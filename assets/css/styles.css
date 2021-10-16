@@ -36,7 +36,7 @@ header ul {
 .buttons {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 100%;
     margin: 20px auto;
 }
 
@@ -48,6 +48,8 @@ header ul {
     font-size: 90%;
     font-weight: 900;
     cursor: pointer;
+    min-width: 100px;
+    min-height: 50px;
 }
 
 #go-back-button a {
@@ -65,6 +67,7 @@ header ul {
     font-weight: 900;
     width: 50%;
     margin: 2% auto;
+    min-width: 200px;
 }
 
 /* shows which choice the user has selected */
@@ -97,6 +100,7 @@ form {
     display: flex;
     flex-direction: column;
     margin-top: 5%;
+    margin: 0 auto;
 }
 
 #high-scores {
@@ -123,4 +127,46 @@ form {
 #clear-button {
     margin-top: 2%;
 }
+
+/* *************************** responsiveness ****************** */
+
+@media (max-width: 800px) {
+    h1, h2, h3 {
+      font-size: 100%;
+      margin-bottom: 5%;
+      font-weight: bold;
+    }
+    
+    p {
+        font-size: 70%;
+      }
+  }
+
+  @media (max-width: 560px) {
+    h1, h4 {
+      font-size: 90%;
+      margin-bottom: 5%;
+      font-weight: bold;
+    }
+
+    h2, h3 {
+        font-size: 65%;
+        margin-bottom: 10%;
+        font-weight: bold;
+    }
+    
+    p {
+        font-size: 40%;
+      }
+
+    .multiple-choices {
+        margin: -20px;
+    }
+
+    #add-initials {
+        font-size: 50%;
+    }
+
+
+  }
 
