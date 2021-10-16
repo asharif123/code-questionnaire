@@ -30,4 +30,4 @@ If the time expires or player answers all 5 questions, player will be redirected
 
 ![alt-text](./assets/images/initials.JPG "initials")
 
-
+After Clicking on "Add Initials", player will be redirected to the high scores page below containing their initials and high score. Clicking on "Home" button will redirect player to the main website page and clicking on "Clear Button" will remove the initials and score on the high score page.
