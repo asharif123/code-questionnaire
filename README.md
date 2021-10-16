@@ -23,6 +23,11 @@ Correct Answers will result in score increasing by 10 points and incorrect will 
 As soon as player clicks on a button, player will automatically be redirected to the next question. There are 5 questions in total.
 
 ![alt-text](./assets/images/questions.JPG "questions")
-questions.JPG
+
+
+If the time expires or player answers all 5 questions, player will be redirected to this page below where player can see their total score and enter initials. Clicking on "Add Initials" will redirect player to high scores page where they will see their score next to their initials.
+
+
+![alt-text](./assets/images/initials.JPG "initials")
 
 
