@@ -20,4 +20,4 @@ Once "Start Quiz" button is clicked, the player will be redirected to the first 
 
 Correct Answers will result in score increasing by 10 points and incorrect will decrease by 10 and timer will decrease by 5 seconds.
 
-![alt-text](./assets/images/questions.JPG)
+![alt-text](./assets/images/qquestions.JPG "questions")
