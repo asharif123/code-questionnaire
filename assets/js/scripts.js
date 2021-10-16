@@ -120,7 +120,7 @@ var highScoreButton = document.querySelector("#high-score");
 
 if (highScoreButton) {
     highScoreButton.addEventListener("click", function () {
-        location.href = '/high-score.html';
+        location.href = './high-score.html';
     })
 }
 
